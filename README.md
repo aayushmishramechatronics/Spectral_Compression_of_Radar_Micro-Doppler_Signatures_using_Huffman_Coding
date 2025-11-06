@@ -33,56 +33,26 @@ The Goal of this Project is to Build a Complete Signal Processing and Compressio
 This Repository uses a Modular Layout, where Each Component of the Pipeline is Built and Maintained Independently for Scalability.
 
 ```
-micro-doppler-lossless-compression/
-│
-├── src/                         # MATLAB source files
-│   ├── main.m                   # Entry point for running the full simulation
-│   ├── generate_signals.m       # Creates synthetic bird and drone signals
-│   ├── design_filter.m          # Designs a band-pass filter
-│   ├── apply_filter.m           # Applies filtering to the signals
-│   ├── compute_fft.m            # Computes FFT and frequency analysis
-│   ├── compute_spectrogram.m    # Generates time-frequency spectrogram
-│   ├── cross_correlation.m      # Performs signal correlation comparison
-│   ├── quantize_signal.m        # Quantizes the filtered signals
-│   ├── huffman_encode.m         # Huffman encoding for lossless compression
-│   ├── huffman_decode.m         # Huffman decoding and verification
-│   ├── plot_results.m           # Visualizes results and comparisons
-│   └── summary_report.m         # Displays and logs compression metrics
-│
-├── data/                        # Input/output signal data
-│   ├── bird_signal.mat
-│   ├── drone_signal.mat
-│   └── results/
-│       ├── encoded_data.mat
-│       ├── decoded_signal.mat
-│       └── compression_stats.mat
-│
-├── results/                     # Generated plots and reports
-│   ├── plots/
-│   │   ├── spectrogram_bird.png
-│   │   ├── spectrogram_drone.png
-│   │   ├── fft_comparison.png
-│   │   ├── filter_response.png
-│   │   └── huffman_stats.png
-│   └── report/
-│       └── compression_summary.txt
-│
-├── utils/                       # Supporting functions and tools
-│   ├── export_fig.m
-│   ├── save_data.m
-│   ├── plot_style.m
-│   └── load_defaults.m
-│
-├── docs/                        # Documentation and reference materials
-│   ├── project_overview.pdf
-│   ├── block_diagram.png
-│   ├── flowchart.png
-│   └── theory_background.md
-│
-├── LICENSE
-├── .gitignore
-├── requirements.txt
-└── README.md
+Directory Structure:
+└── aayushmishramechatronics-spectral_compression_of_radar_micro-doppler_signatures_using_huffman_coding/
+    ├── README.md
+    ├── LICENSE
+    ├── implementation_data/
+    │   └── result.mat
+    └── src/
+        ├── apply_filter.m
+        ├── compute_fft.m
+        ├── compute_spectrogram.m
+        ├── cross_correlation.m
+        ├── design_filter.m
+        ├── generate_signals.m
+        ├── huffman_decode.m
+        ├── huffman_encode.m
+        ├── main.m
+        ├── plot_results.m
+        ├── quantize_signal.m
+        └── summary_report.m
+
 ```
 
 ---
@@ -98,17 +68,6 @@ micro-doppler-lossless-compression/
 
 ---
 
-## Example Output Metrics
-
-| Metric               | Value            |
-| -------------------- | ---------------- |
-| Entropy              | 6.71 bits/symbol |
-| Compression Ratio    | 1.8:1            |
-| Efficiency           | 93.5%            |
-| Reconstruction Error | 0 (Lossless)     |
-
----
-
 ## Core Concepts Used
 
 * Micro-Doppler Modulation Modeling
@@ -117,22 +76,6 @@ micro-doppler-lossless-compression/
 * Signal Correlation & Convolution
 * Data Quantization and Entropy Measurement
 * Huffman Coding for Lossless Compression
-
----
-
-## How to Run
-
-1. Open MATLAB and navigate to the `src` directory:
-
-   ```matlab
-   cd src
-   ```
-2. Run the main script:
-
-   ```matlab
-   main
-   ```
-3. The simulation will automatically generate all outputs, plots, and performance reports in the `/results/` folder.
 
 ---
 
@@ -148,15 +91,6 @@ micro-doppler-lossless-compression/
 ## License
 
 This project is distributed under the **GNU General Public License v2.0**. You can freely use, modify, and distribute it with proper credit.
-
----
-
-## Optional Improvements/Add-Ons
-
-[] Use real radar I/Q datasets for experimental validation
-[] Build an interactive MATLAB GUI for real-time visualization
-[] Extend to a Python-based implementation
-[] Explore alternative compression methods like wavelet or PCA-based encoding
 
 ---
 
