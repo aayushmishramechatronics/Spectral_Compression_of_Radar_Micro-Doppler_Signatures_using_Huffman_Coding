@@ -1,6 +1,6 @@
 % ==============================================
 % File: huffman_encode.m
-% Author: Aayush Mishra
+% Author: Aayush Anil Mishra
 % Project: Lossless Compression of Micro-Doppler Data
 % Description: Huffman Encoding with Compression Statistics
 % ==============================================
