@@ -90,9 +90,8 @@ Directory Structure:
 
 ## License
 
-This project is distributed under the **GNU General Public License v2.0**. You can freely use, modify, and distribute it with proper credit.
+This project is distributed under the **GNU General Public License v2.0**. You can Freely Use, Modify, and Distribute it with Proper Credit.
 
 ---
 
-**Developed by:** Aayush Mishra
-**Purpose:** A simulation-based DSP project to study and demonstrate radar signal analysis and lossless compression.
+**Developed by:** Aayush Anil Mishra 
