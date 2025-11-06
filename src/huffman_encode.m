@@ -8,52 +8,52 @@
 function [encoded, dict, stats] = huffman_encode(quantized, symbols)
     % Convert to uint8 for Huffman Encoding
     quantized = uint8(quantized);
-    symbols = uint8(symbols);
+    
+    % Error Fixed - Keeping Symbols in Column Vector
+    symbols = unique(symbols(:));  % Sort + Remove Duplicates
     
     % Calculate Symbol Probabilities
     N = length(quantized);
-    symbol_counts = histcounts(quantized, [symbols; max(symbols)+1]);
+
+    % Compute Histogram Counts
+    edges = double([symbols; max(symbols)+1]);  % Ensure Numeric & Column
+    symbol_counts = histcounts(double(quantized), edges);
+    
     probabilities = symbol_counts / N;
+
+    % Remove Zero-Probability Symbols (Just In Case)
+    valid_idx = probabilities > 0;
+    symbols = symbols(valid_idx);
+    probabilities = probabilities(valid_idx);
     
     % Create Huffman Dictionary
-    dict = huffmandict(symbols, probabilities);
+    dict = huffmandict(num2cell(symbols), probabilities);
     
     % Encode the Signal
-    encoded = huffmanenco(quantized, dict);
+    encoded = huffmanenco(num2cell(double(quantized)), dict);
     
     % Calculate Statistics
-    % Entropy
     entropy = -sum(probabilities(probabilities > 0) .* log2(probabilities(probabilities > 0)));
-    
-    % Original Bits (8-Bit Quantization)
     original_bits = N * 8;
-    
-    % Compressed Bits
     compressed_bits = length(encoded);
-    
-    % Average Code Length
     avg_code_length = compressed_bits / N;
-    
-    % Compression Ratio
     compression_ratio = original_bits / compressed_bits;
-    
-    % Efficiency
     efficiency = (entropy / avg_code_length) * 100;
-    
-    % Bits Saved
     bits_saved = original_bits - compressed_bits;
     savings_percent = (bits_saved / original_bits) * 100;
     
     % Store Statistics
-    stats.entropy = entropy;
-    stats.original_bits = original_bits;
-    stats.compressed_bits = compressed_bits;
-    stats.avg_code_length = avg_code_length;
-    stats.compression_ratio = compression_ratio;
-    stats.efficiency = efficiency;
-    stats.bits_saved = bits_saved;
-    stats.savings_percent = savings_percent;
-    stats.num_symbols = length(symbols);
+    stats = struct( ...
+        'entropy', entropy, ...
+        'original_bits', original_bits, ...
+        'compressed_bits', compressed_bits, ...
+        'avg_code_length', avg_code_length, ...
+        'compression_ratio', compression_ratio, ...
+        'efficiency', efficiency, ...
+        'bits_saved', bits_saved, ...
+        'savings_percent', savings_percent, ...
+        'num_symbols', length(symbols) ...
+    );
     
     % Display Code Length Distribution
     figure('Name', 'Huffman Encoding Statistics', 'NumberTitle', 'off');
